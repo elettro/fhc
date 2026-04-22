@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FHC HERC-DOOR 1/2" Clear Tempered Glass Infographic</title>
+  <style>
+    :root{
+      --bg:#f4f7fa;
+      --panel:#ffffff;
+      --text:#13212f;
+      --muted:#5f6f7f;
+      --line:#dbe4ec;
+      --blue:#0d5ea6;
+      --blue-dark:#093d6d;
+      --accent:#e8f3ff;
+      --green:#127a52;
+      --shadow:0 18px 50px rgba(12,32,58,.10);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, #eef7ff 0%, transparent 32%),
+        linear-gradient(180deg, #f8fbfe 0%, var(--bg) 100%);
+      color:var(--text);
+    }
+
+    .wrap{
+      max-width:1200px;
+      margin:0 auto;
+      padding:32px 20px 60px;
+    }
+
+    .infographic{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .hero{
+      background:linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
+      color:#fff;
+      padding:38px 34px 34px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero:before,
+    .hero:after{
+      content:"";
+      position:absolute;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+    }
+
+    .hero:before{
+      width:280px;
+      height:280px;
+      right:-80px;
+      top:-80px;
+    }
+
+    .hero:after{
+      width:170px;
+      height:170px;
+      right:120px;
+      bottom:-70px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      font-size:12px;
+      letter-spacing:1.6px;
+      text-transform:uppercase;
+      font-weight:700;
+      padding:8px 12px;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:999px;
+      background:rgba(255,255,255,.10);
+      margin-bottom:16px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.25fr .75fr;
+      gap:26px;
+      align-items:end;
+      position:relative;
+      z-index:1;
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-size:40px;
+      line-height:1.08;
+      font-weight:800;
+      max-width:760px;
+    }
+
+    .hero p{
+      margin:0;
+      font-size:18px;
+      line-height:1.5;
+      color:rgba(255,255,255,.88);
+      max-width:720px;
+    }
+
+    .spec-card{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.20);
+      border-radius:22px;
+      padding:22px;
+      backdrop-filter:blur(6px);
+    }
+
+    .spec-card h2{
+      margin:0 0 18px;
+      font-size:14px;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.88);
+    }
+
+    .spec-highlight{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .mini{
+      background:rgba(255,255,255,.12);
+      border-radius:16px;
+      padding:14px 12px;
+    }
+
+    .mini .label{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:1.2px;
+      color:rgba(255,255,255,.72);
+      margin-bottom:6px;
+      font-weight:700;
+    }
+
+    .mini .value{
+      font-size:22px;
+      font-weight:800;
+      line-height:1.15;
+      color:#fff;
+    }
+
+    .content{
+      padding:28px;
+      display:grid;
+      grid-template-columns:repeat(12, 1fr);
+      gap:22px;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:24px;
+    }
+
+    .card h3{
+      margin:0 0 16px;
+      font-size:20px;
+      line-height:1.2;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.55;
+      font-size:15px;
+    }
+
+    .span-12{grid-column:span 12}
+    .span-8{grid-column:span 8}
+    .span-6{grid-column:span 6}
+    .span-4{grid-column:span 4}
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+
+    .stat{
+      background:var(--accent);
+      border:1px solid #cfe4fa;
+      border-radius:18px;
+      padding:20px 16px;
+      text-align:center;
+    }
+
+    .stat .big{
+      font-size:28px;
+      font-weight:800;
+      line-height:1.1;
+      color:var(--blue-dark);
+      margin-bottom:8px;
+    }
+
+    .stat .small{
+      font-size:13px;
+      line-height:1.4;
+      color:var(--muted);
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.8px;
+    }
+
+    .list{
+      display:grid;
+      gap:12px;
+    }
+
+    .list-item{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:12px 0;
+      border-bottom:1px solid #edf2f7;
+    }
+
+    .list-item:last-child{
+      border-bottom:none;
+      padding-bottom:0;
+    }
+
+    .icon{
+      width:40px;
+      height:40px;
+      flex:0 0 40px;
+      border-radius:12px;
+      background:var(--accent);
+      border:1px solid #cfe4fa;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+    }
+
+    .list-item strong{
+      display:block;
+      font-size:15px;
+      margin-bottom:3px;
+    }
+
+    .list-item span{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.45;
+    }
+
+    .callout{
+      background:linear-gradient(135deg, #eff7ff 0%, #dcebfb 100%);
+      border:1px solid #c9def3;
+      border-radius:24px;
+      padding:28px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .callout-text{
+      font-size:28px;
+      line-height:1.15;
+      font-weight:800;
+      color:var(--blue-dark);
+      max-width:680px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:12px 16px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid #c9def3;
+      color:var(--green);
+      font-size:13px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      white-space:nowrap;
+    }
+
+    .footer-note{
+      padding:0 28px 28px;
+      color:#627283;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .stats{
+        grid-template-columns:1fr;
+      }
+
+      .span-8,
+      .span-6,
+      .span-4{
+        grid-column:span 12;
+      }
+
+      .callout{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .hero h1{
+        font-size:32px;
+      }
+    }
+
+    @media (max-width: 640px){
+      .wrap{
+        padding:14px 10px 34px;
+      }
+
+      .hero,
+      .content,
+      .footer-note{
+        padding-left:18px;
+        padding-right:18px;
+      }
+
+      .hero{
+        padding-top:26px;
+        padding-bottom:24px;
+      }
+
+      .hero h1{
+        font-size:28px;
+      }
+
+      .spec-highlight{
+        grid-template-columns:1fr;
+      }
+
+      .callout-text{
+        font-size:22px;
+      }
+    }
+
+    @media print{
+      body{
+        background:#fff;
+      }
+      .wrap{
+        max-width:none;
+        padding:0;
+      }
+      .infographic{
+        box-shadow:none;
+        border:none;
+        border-radius:0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="infographic">
+
+      <header class="hero">
+        <span class="eyebrow">Product Infographic</span>
+
+        <div class="hero-grid">
+          <div>
+            <h1>FHC HERC-DOOR 1/2" Clear Tempered Glass</h1>
+            <p>
+              Heavy-duty glass panel designed for FHC HERC-DOOR rail systems.
+              Precision cut. Pre-drilled. Built for demanding commercial applications.
+            </p>
+          </div>
+
+          <div class="spec-card">
+            <h2>At a Glance</h2>
+            <div class="spec-highlight">
+              <div class="mini">
+                <div class="label">Thickness</div>
+                <div class="value">1/2"</div>
+              </div>
+              <div class="mini">
+                <div class="label">Glass Type</div>
+                <div class="value">Clear Tempered</div>
+              </div>
+              <div class="mini">
+                <div class="label">Width</div>
+                <div class="value">35-3/4"</div>
+              </div>
+              <div class="mini">
+                <div class="label">Height</div>
+                <div class="value">75-15/16"</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="content">
+
+        <div class="card span-12">
+          <h3>Core Product Specifications</h3>
+          <div class="stats">
+            <div class="stat">
+              <div class="big">1/2"</div>
+              <div class="small">Glass Thickness</div>
+            </div>
+            <div class="stat">
+              <div class="big">35-3/4"</div>
+              <div class="small">Panel Width</div>
+            </div>
+            <div class="stat">
+              <div class="big">75-15/16"</div>
+              <div class="small">Panel Height</div>
+            </div>
+            <div class="stat">
+              <div class="big">12"</div>
+              <div class="small">Handle Hole Center-to-Center</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span-6">
+          <h3>Design and Fabrication Details</h3>
+          <div class="list">
+            <div class="list-item">
+              <div class="icon">◻</div>
+              <div>
+                <strong>Material</strong>
+                <span>Clear tempered glass for high-strength door applications.</span>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="icon">↔</div>
+              <div>
+                <strong>Precision Dimensions</strong>
+                <span>Cut to 35-3/4" x 75-15/16" for exact fit within the intended system.</span>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="icon">⌾</div>
+              <div>
+                <strong>Handle Preparation</strong>
+                <span>Pre-drilled holes support a 12" center-to-center handle configuration.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span-6">
+          <h3>System Compatibility</h3>
+          <div class="list">
+            <div class="list-item">
+              <div class="icon">▣</div>
+              <div>
+                <strong>Engineered for HERC-DOOR</strong>
+                <span>Designed specifically for use with FHC HERC-DOOR rail systems.</span>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="icon">⛓</div>
+              <div>
+                <strong>Seamless Integration</strong>
+                <span>Precision fabrication supports efficient installation and alignment.</span>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="icon">🏢</div>
+              <div>
+                <strong>Heavy-Duty Use</strong>
+                <span>Built for large entrance systems and other commercial-grade installations.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span-4">
+          <h3>Best Fit Applications</h3>
+          <div class="list">
+            <div class="list-item">
+              <div class="icon">🏬</div>
+              <div>
+                <strong>Commercial Storefronts</strong>
+                <span>Strong, clean presentation for high-visibility entrances.</span>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="icon">🚪</div>
+              <div>
+                <strong>Office Entry Systems</strong>
+                <span>Suitable for professional and high-traffic spaces.</span>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="icon">⇄</div>
+              <div>
+                <strong>Sliding Door Installations</strong>
+                <span>Optimized for rail-based entry systems.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span-4">
+          <h3>Performance and Compliance</h3>
+          <div class="list">
+            <div class="list-item">
+              <div class="icon">✓</div>
+              <div>
+                <strong>Safety Tempered</strong>
+                <span>Meets rigorous U.S. safety tempering standards.</span>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="icon">🛡</div>
+              <div>
+                <strong>Durability Focused</strong>
+                <span>Engineered for demanding, heavy-duty use.</span>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="icon">👣</div>
+              <div>
+                <strong>High-Traffic Ready</strong>
+                <span>Suitable for frequent-use commercial environments.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span-4">
+          <h3>FHC Professional Support</h3>
+          <div class="list">
+            <div class="list-item">
+              <div class="icon">📦</div>
+              <div>
+                <strong>Extensive Inventory</strong>
+                <span>Glazing supplies, architectural hardware, and specialized tools.</span>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="icon">📄</div>
+              <div>
+                <strong>Project Resources</strong>
+                <span>Quote requests and technical submittals available through the site.</span>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="icon">🧩</div>
+              <div>
+                <strong>Digital Design Tools</strong>
+                <span>Supports specification and planning for professional projects.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="span-12">
+          <div class="callout">
+            <div class="callout-text">
+              Built for commercial strength and precision fit.
+            </div>
+            <div class="badge">Commercial Grade Glass Solution</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-note">
+        Source summary reflected in this infographic: FHC product page for HERC-DOOR 1/2" Clear Tempered Glass, including product dimensions, handle preparation, intended use, safety tempering standards, and related FHC project support capabilities.
+      </div>
+
+    </section>
+  </div>
+</body>
+</html>
