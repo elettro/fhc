@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elettro | Integrated Product Content Directory for FHC Sample</title>
+  <meta name="description" content="Integrated Elettro sample content directory showing hosted product media, HTML pages, audio, video, infographic, SEO reports, and AI content examples built around an FHC product." />
+  <style>
+    :root{
+      --bg:#eef4fa;
+      --panel:#ffffff;
+      --panel-soft:#f5f9fd;
+      --text:#102030;
+      --muted:#5f6f7f;
+      --line:#d9e3ed;
+      --blue:#0f66c3;
+      --blue-dark:#0a3b73;
+      --cyan:#70d6ff;
+      --gold:#c39a48;
+      --shadow:0 20px 60px rgba(7,24,48,.12);
+      --radius:24px;
+      --max:1260px;
+    }
+
+    *{box-sizing:border-box}
+
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(112,214,255,.12) 0%, transparent 22%),
+        linear-gradient(180deg, #f8fbfe 0%, var(--bg) 100%);
+      line-height:1.55;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    img, video{
+      max-width:100%;
+      display:block;
+    }
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 18px 54px;
+    }
+
+    .topbar{
+      background:linear-gradient(90deg, #07111f 0%, #0d1d33 100%);
+      color:#fff;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .topbar-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:12px 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+      font-size:14px;
+    }
+
+    .topbar strong{
+      font-weight:800;
+    }
+
+    .hero{
+      margin-top:18px;
+      background:
+        radial-gradient(circle at 82% 20%, rgba(112,214,255,.18) 0%, transparent 18%),
+        linear-gradient(135deg, #07111f 0%, #0d1d33 62%, #114b8f 100%);
+      color:#fff;
+      border-radius:34px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      position:relative;
+    }
+
+    .hero:before,
+    .hero:after{
+      content:"";
+      position:absolute;
+      border-radius:999px;
+      background:rgba(255,255,255,.07);
+      pointer-events:none;
+    }
+
+    .hero:before{
+      width:360px;
+      height:360px;
+      right:-120px;
+      top:-120px;
+    }
+
+    .hero:after{
+      width:200px;
+      height:200px;
+      right:180px;
+      bottom:-90px;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:30px;
+      align-items:center;
+      padding:40px 34px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.09);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:1.2px;
+      text-transform:uppercase;
+      margin-bottom:16px;
+    }
+
+    h1{
+      margin:0 0 14px;
+      font-size:52px;
+      line-height:1.02;
+      font-weight:800;
+      max-width:760px;
+    }
+
+    .hero p{
+      margin:0 0 24px;
+      font-size:18px;
+      color:rgba(255,255,255,.9);
+      max-width:760px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:0 22px;
+      border-radius:999px;
+      font-size:15px;
+      font-weight:800;
+      transition:.25s ease;
+    }
+
+    .btn-primary{
+      background:#fff;
+      color:var(--blue-dark);
+      box-shadow:0 14px 34px rgba(0,0,0,.18);
+    }
+
+    .btn-primary:hover{ transform:translateY(-2px) }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.22);
+      color:#fff;
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,.16);
+    }
+
+    .hero-visual{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:28px;
+      padding:18px;
+      backdrop-filter:blur(8px);
+    }
+
+    .hero-visual img{
+      width:100%;
+      border-radius:18px;
+      box-shadow:0 14px 34px rgba(0,0,0,.18);
+      background:#fff;
+    }
+
+    .hero-caption{
+      margin-top:12px;
+      color:rgba(255,255,255,.86);
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .section{
+      margin-top:24px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      padding:28px;
+    }
+
+    .section h2{
+      margin:0 0 10px;
+      font-size:34px;
+      line-height:1.08;
+      color:var(--blue-dark);
+    }
+
+    .sub{
+      margin:0 0 20px;
+      color:var(--muted);
+      font-size:16px;
+    }
+
+    .notice{
+      margin-top:16px;
+      padding:16px 18px;
+      border-left:5px solid var(--gold);
+      background:#fbf7ef;
+      border-radius:0 16px 16px 0;
+      color:#4e3a1f;
+      font-weight:700;
+    }
+
+    .media-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:18px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, #ffffff 0%, var(--panel-soft) 100%);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      position:relative;
+      overflow:hidden;
+      min-height:100%;
+    }
+
+    .card:before{
+      content:"";
+      position:absolute;
+      inset:0 auto auto 0;
+      width:100%;
+      height:4px;
+      background:linear-gradient(90deg, var(--blue) 0%, var(--cyan) 100%);
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      align-self:flex-start;
+      border-radius:999px;
+      padding:8px 12px;
+      background:#eaf4ff;
+      color:var(--blue-dark);
+      border:1px solid #d0e5fb;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      margin-bottom:14px;
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-size:24px;
+      line-height:1.15;
+    }
+
+    .card p{
+      margin:0 0 16px;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .embed{
+      margin-top:auto;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:12px;
+      overflow:hidden;
+    }
+
+    .embed img{
+      width:100%;
+      border-radius:12px;
+      background:#fff;
+    }
+
+    video, audio{
+      width:100%;
+      border-radius:12px;
+      background:#091521;
+    }
+
+    .linklist{
+      display:grid;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .linkbtn{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:#fff;
+      border:1px solid var(--line);
+      font-size:14px;
+      font-weight:700;
+      color:#21405f;
+      transition:.2s ease;
+    }
+
+    .linkbtn:hover{
+      transform:translateY(-1px);
+      border-color:#b9d6f7;
+      background:#f7fbff;
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:16px;
+    }
+
+    .gallery-item{
+      border:1px dashed #bfd3e6;
+      border-radius:20px;
+      background:#f8fbff;
+      padding:18px;
+      min-height:170px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .gallery-item strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:16px;
+      color:var(--blue-dark);
+    }
+
+    .gallery-item span{
+      display:block;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:20px;
+      align-items:start;
+    }
+
+    .contact-band{
+      margin-top:24px;
+      background:linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
+      color:#fff;
+      border-radius:28px;
+      padding:30px;
+      box-shadow:var(--shadow);
+    }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:24px;
+      align-items:center;
+    }
+
+    .contact-band h2{
+      margin:0 0 10px;
+      font-size:38px;
+      line-height:1.06;
+    }
+
+    .contact-band p{
+      margin:0;
+      color:rgba(255,255,255,.9);
+      font-size:17px;
+      max-width:760px;
+    }
+
+    .contact-box{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:22px;
+      padding:20px;
+    }
+
+    .contact-box .line{
+      margin-bottom:10px;
+      font-size:16px;
+      font-weight:700;
+      color:#fff;
+      word-break:break-word;
+    }
+
+    .contact-box .line:last-child{
+      margin-bottom:0;
+    }
+
+    .footer{
+      padding:26px 0 10px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    @media (max-width: 1100px){
+      .hero-inner,
+      .cards,
+      .media-grid,
+      .gallery-grid,
+      .split,
+      .contact-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 760px){
+      .wrap{
+        padding:0 12px 40px;
+      }
+
+      .topbar-inner{
+        padding:12px;
+      }
+
+      .hero-inner,
+      .section,
+      .contact-band{
+        padding:22px;
+      }
+
+      h1{ font-size:38px }
+      .section h2{ font-size:29px }
+      .contact-band h2{ font-size:30px }
+    }
+
+    @media (max-width: 520px){
+      h1{ font-size:31px }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div><strong>Elettro.com</strong> | Innovative Digital Development</div>
+      <div><strong>Dean Palermo</strong> | (310) 408-6687 | dpalermo@elettro.com</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">Integrated Media Version</div>
+          <h1>Elettro sample product collateral directory with hosted media built into the page.</h1>
+          <p>
+            This version keeps the same directory concept, but now it embeds the hosted product video clips, audio, and the direct infographic image inside the page so the content can be experienced in one place.
+          </p>
+          <div class="hero-actions">
+            <a href="#integrated-media" class="btn btn-primary">Jump to Media</a>
+            <a href="https://elettro.com/" class="btn btn-secondary" target="_blank" rel="noopener">Visit Elettro.com</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <img
+            src="https://elettro.github.io/fhc/tempered-glass/tempered-glass.png"
+            alt="FHC tempered glass infographic by Elettro"
+          />
+          <div class="hero-caption">Featured visual: Tempered glass infographic sample</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>What is integrated here</h2>
+      <p class="sub">
+        This page embeds the media links you gave directly. Where you gave a direct asset URL, it is playable or viewable inside the page. Where only the Dropbox folder link was provided, I built a gallery section and linked the folder, but I did not fabricate individual image URLs that were not supplied.
+      </p>
+      <div class="notice">
+        Important: the direct infographic image is embedded. The known Dropbox video and audio files are embedded in playable format. The full folder image set still needs direct file links if you want every individual image thumbnail rendered inside the page.
+      </div>
+    </section>
+
+    <section class="section" id="integrated-media">
+      <h2>Integrated media showcase</h2>
+      <p class="sub">
+        Base product selected: FHC HD3684 tempered glass.
+      </p>
+
+      <div class="cards">
+
+        <article class="card">
+          <div class="tag">#1 Custom HTML Product Page</div>
+          <h3>Custom info HTML / web page</h3>
+          <p>
+            A standalone sales and product information page built around one specific item.
+          </p>
+          <div class="linklist">
+            <a class="linkbtn" href="https://elettro.github.io/fhc/tempered-glass/" target="_blank" rel="noopener">
+              <span>Open HTML page</span><span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="tag">#2 Product Info Video</div>
+          <h3>Tempered glass info-video</h3>
+          <p>
+            Product-focused overview clip hosted on Dropbox and embedded below.
+          </p>
+          <div class="embed">
+            <video controls preload="metadata">
+              <source src="https://www.dropbox.com/scl/fi/es8mgfgm48hggycwwobel/FHC_HERC-DOOR_Tempered_Glass.mp4?rlkey=qr8fmftrel4yurmfxkewkwusa&st=vankh5io&raw=1" type="video/mp4">
+            </video>
+          </div>
+          <div class="linklist">
+            <a class="linkbtn" href="https://www.dropbox.com/scl/fi/es8mgfgm48hggycwwobel/FHC_HERC-DOOR_Tempered_Glass.mp4?rlkey=qr8fmftrel4yurmfxkewkwusa&st=vankh5io&dl=0" target="_blank" rel="noopener">
+              <span>Open video source</span><span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="tag">#3 Product Audio</div>
+          <h3>Product audio podcast</h3>
+          <p>
+            Technical product story repackaged as a hosted audio clip.
+          </p>
+          <div class="embed">
+            <audio controls preload="metadata">
+              <source src="https://www.dropbox.com/scl/fi/2u4isbdgxbbq6ka5hi7uk/The_engineering_behind_heavy_glass_doors.m4a?rlkey=uie1o67iq1vcewc055driat2i&st=0beadkkj&raw=1" type="audio/mp4">
+            </audio>
+          </div>
+          <div class="linklist">
+            <a class="linkbtn" href="https://www.dropbox.com/scl/fi/2u4isbdgxbbq6ka5hi7uk/The_engineering_behind_heavy_glass_doors.m4a?rlkey=uie1o67iq1vcewc055driat2i&st=0beadkkj&dl=0" target="_blank" rel="noopener">
+              <span>Open audio source</span><span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="tag">#4 Infographic</div>
+          <h3>Tempered glass infographic</h3>
+          <p>
+            Direct image asset embedded from the hosted Elettro graphic.
+          </p>
+          <div class="embed">
+            <img
+              src="https://elettro.github.io/fhc/tempered-glass/tempered-glass.png"
+              alt="Tempered glass infographic"
+            />
+          </div>
+          <div class="linklist">
+            <a class="linkbtn" href="https://elettro.github.io/fhc/tempered-glass/tempered-glass.png" target="_blank" rel="noopener">
+              <span>Open infographic image</span><span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="tag">#5 Montage Video Example</div>
+          <h3>AI product montage video</h3>
+          <p>
+            Example showing how Elettro can animate a product or service from a group of still images.
+          </p>
+          <div class="embed">
+            <video controls preload="metadata">
+              <source src="https://www.dropbox.com/scl/fi/ngg5j6tffw04634n20nld/Seascape-Example-Montage-Video-from-group-of-images.mp4?rlkey=izm3yplf8tjikw3p3ccgar41t&st=o6xvyyy3&raw=1" type="video/mp4">
+            </video>
+          </div>
+          <div class="linklist">
+            <a class="linkbtn" href="https://www.dropbox.com/scl/fi/ngg5j6tffw04634n20nld/Seascape-Example-Montage-Video-from-group-of-images.mp4?rlkey=izm3yplf8tjikw3p3ccgar41t&st=o6xvyyy3&dl=0" target="_blank" rel="noopener">
+              <span>Open montage source</span><span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="tag">#6 Promo Social Images</div>
+          <h3>Promo image folder</h3>
+          <p>
+            The folder link is included below. Because only the folder URL was provided, this block links out to the image set rather than pretending to render files I was not given individually.
+          </p>
+          <div class="linklist">
+            <a class="linkbtn" href="https://www.dropbox.com/scl/fo/4w81zw5vupk87e1yod6s4/ALIg5PjWDi21YHQ_I8d2Bw4?rlkey=bfy7jxvblvtav3f8att89q79b&st=5krn8rm0&dl=0" target="_blank" rel="noopener">
+              <span>Open Dropbox image folder</span><span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="tag">#7 Blog HTML Page</div>
+          <h3>Tempered glass blog page</h3>
+          <p>
+            Long-form sales and SEO style content built around the same product story.
+          </p>
+          <div class="linklist">
+            <a class="linkbtn" href="https://elettro.github.io/fhc/tempered-glass/blog.html" target="_blank" rel="noopener">
+              <span>Read blog page</span><span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="tag">#8 Voice Agent Concept</div>
+          <h3>After-hours automated voice agent</h3>
+          <p>
+            Example concept for order status and product info automation.
+          </p>
+          <div class="embed">
+            <audio controls preload="metadata">
+              <source src="https://www.dropbox.com/scl/fi/tmrtq4k6wv3phr9fnrei6/250613-AI-VoiceCallSample-v2-louder.mp3?rlkey=4df7jsbdod4yq3ik6fbbx8qm0&st=ugovueij&raw=1" type="audio/mpeg">
+            </audio>
+          </div>
+          <div class="linklist">
+            <a class="linkbtn" href="https://elettro.github.io/dev/voice/" target="_blank" rel="noopener">
+              <span>Open voice info page</span><span>↗</span>
+            </a>
+            <a class="linkbtn" href="https://www.dropbox.com/scl/fi/tmrtq4k6wv3phr9fnrei6/250613-AI-VoiceCallSample-v2-louder.mp3?rlkey=4df7jsbdod4yq3ik6fbbx8qm0&st=ugovueij&dl=0" target="_blank" rel="noopener">
+              <span>Open voice sample source</span><span>↗</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>#9 Hosted product videos</h2>
+      <p class="sub">
+        These are embedded directly into the page from Dropbox-hosted sources.
+      </p>
+
+      <div class="media-grid">
+
+        <article class="card">
+          <div class="tag">Video #1</div>
+          <h3>Hosted product promo video 1</h3>
+          <p>
+            Direct spokesperson-driven product promo clip.
+          </p>
+          <div class="embed">
+            <video controls preload="metadata">
+              <source src="https://www.dropbox.com/scl/fi/w4cfbmhwblpv6z0xng2zc/Product-Promo-Vid-1-Hi_-I_m-Tony-from-FHC-This-is-our-HERC-DOOR-12-inch-Clear-Tempered-Glass-Built-for.mp4?rlkey=egvteeu93d9dcp38c7jw9agad&st=r4ykndui&raw=1" type="video/mp4">
+            </video>
+          </div>
+          <div class="linklist">
+            <a class="linkbtn" href="https://www.dropbox.com/scl/fi/w4cfbmhwblpv6z0xng2zc/Product-Promo-Vid-1-Hi_-I_m-Tony-from-FHC-This-is-our-HERC-DOOR-12-inch-Clear-Tempered-Glass-Built-for.mp4?rlkey=egvteeu93d9dcp38c7jw9agad&st=r4ykndui&dl=0" target="_blank" rel="noopener">
+              <span>Open video #1</span><span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="tag">Video #2</div>
+          <h3>Hosted product promo video 2</h3>
+          <p>
+            Second product promo variation with presenter in commercial glass setting.
+          </p>
+          <div class="embed">
+            <video controls preload="metadata">
+              <source src="https://www.dropbox.com/scl/fi/jo8dkp8zc6m5s7ep317hu/Product-Promo-Vid-2-Medium-shot-of-a-confident-male-presenter-named-Tony-standing-in-a-modern-commercial.mp4?rlkey=f4rwb4dpyai5uuj3spiaafc8k&st=snz8uqom&raw=1" type="video/mp4">
+            </video>
+          </div>
+          <div class="linklist">
+            <a class="linkbtn" href="https://www.dropbox.com/scl/fi/jo8dkp8zc6m5s7ep317hu/Product-Promo-Vid-2-Medium-shot-of-a-confident-male-presenter-named-Tony-standing-in-a-modern-commercial.mp4?rlkey=f4rwb4dpyai5uuj3spiaafc8k&st=snz8uqom&dl=0" target="_blank" rel="noopener">
+              <span>Open video #2</span><span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="tag">Video #3</div>
+          <h3>Hosted product promo video 3</h3>
+          <p>
+            Added as requested. Third spokesperson-driven product video variation.
+          </p>
+          <div class="embed">
+            <video controls preload="metadata">
+              <source src="https://www.dropbox.com/scl/fi/3gbo1ux0x2osofwk3mmi5/Product-Video-3-Professional-male-spokesperson_-age-45-to-55_-standing-in-a-clean-modern-glass-showro.mp4?rlkey=8xpjy2zz0zyyn9or05js1puna&st=lqdty6yj&raw=1" type="video/mp4">
+            </video>
+          </div>
+          <div class="linklist">
+            <a class="linkbtn" href="https://www.dropbox.com/scl/fi/3gbo1ux0x2osofwk3mmi5/Product-Video-3-Professional-male-spokesperson_-age-45-to-55_-standing-in-a-clean-modern-glass-showro.mp4?rlkey=8xpjy2zz0zyyn9or05js1puna&st=lqdty6yj&dl=0" target="_blank" rel="noopener">
+              <span>Open video #3</span><span>↗</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Folder-based promo image gallery area</h2>
+      <p class="sub">
+        This section is ready for the 4x5 and 9x16 promo images from the Dropbox folder. Since only the folder URL was supplied, I am not inserting fake image sources. The blocks below show where those direct hosted image URLs would slot in.
+      </p>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <div>
+            <strong>4x5 Promo Image 01</strong>
+            <span>Replace this block with direct Dropbox image URL.</span>
+          </div>
+          <a class="linkbtn" href="https://www.dropbox.com/scl/fo/4w81zw5vupk87e1yod6s4/ALIg5PjWDi21YHQ_I8d2Bw4?rlkey=bfy7jxvblvtav3f8att89q79b&st=5krn8rm0&dl=0" target="_blank" rel="noopener">
+            <span>Folder source</span><span>↗</span>
+          </a>
+        </div>
+
+        <div class="gallery-item">
+          <div>
+            <strong>4x5 Promo Image 02</strong>
+            <span>Replace this block with direct Dropbox image URL.</span>
+          </div>
+          <a class="linkbtn" href="https://www.dropbox.com/scl/fo/4w81zw5vupk87e1yod6s4/ALIg5PjWDi21YHQ_I8d2Bw4?rlkey=bfy7jxvblvtav3f8att89q79b&st=5krn8rm0&dl=0" target="_blank" rel="noopener">
+            <span>Folder source</span><span>↗</span>
+          </a>
+        </div>
+
+        <div class="gallery-item">
+          <div>
+            <strong>9x16 Promo Image 01</strong>
+            <span>Replace this block with direct Dropbox image URL.</span>
+          </div>
+          <a class="linkbtn" href="https://www.dropbox.com/scl/fo/4w81zw5vupk87e1yod6s4/ALIg5PjWDi21YHQ_I8d2Bw4?rlkey=bfy7jxvblvtav3f8att89q79b&st=5krn8rm0&dl=0" target="_blank" rel="noopener">
+            <span>Folder source</span><span>↗</span>
+          </a>
+        </div>
+
+        <div class="gallery-item">
+          <div>
+            <strong>9x16 Promo Image 02</strong>
+            <span>Replace this block with direct Dropbox image URL.</span>
+          </div>
+          <a class="linkbtn" href="https://www.dropbox.com/scl/fo/4w81zw5vupk87e1yod6s4/ALIg5PjWDi21YHQ_I8d2Bw4?rlkey=bfy7jxvblvtav3f8att89q79b&st=5krn8rm0&dl=0" target="_blank" rel="noopener">
+            <span>Folder source</span><span>↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="notice">
+        If you send me the individual Dropbox image links from that folder, I can swap these gallery placeholders into fully rendered thumbnails immediately.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Additional Elettro proof points</h2>
+      <div class="cards">
+
+        <article class="card">
+          <div class="tag">SEO + AI Website Build</div>
+          <h3>Seascape Resort & Marina website</h3>
+          <p>
+            Full website example plus a build report.
+          </p>
+          <div class="linklist">
+            <a class="linkbtn" href="https://elettro.github.io/seascaperesortmarina" target="_blank" rel="noopener">
+              <span>Visit website</span><span>↗</span>
+            </a>
+            <a class="linkbtn" href="https://elettro.github.io/seascaperesortmarina/report" target="_blank" rel="noopener">
+              <span>View report</span><span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="tag">SEO + AI Website Build</div>
+          <h3>Weight Loss Davie</h3>
+          <p>
+            Site example plus score-style report page.
+          </p>
+          <div class="linklist">
+            <a class="linkbtn" href="http://weightlossdavie.com/" target="_blank" rel="noopener">
+              <span>Visit website</span><span>↗</span>
+            </a>
+            <a class="linkbtn" href="http://weightlossdavie.com/report" target="_blank" rel="noopener">
+              <span>View report</span><span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="tag">Audit / Analysis</div>
+          <h3>FHC SEO & AI Schema readiness report</h3>
+          <p>
+            Score-based analysis showing how well a site is positioned for search and AI discovery.
+          </p>
+          <div class="linklist">
+            <a class="linkbtn" href="https://elettro.github.io/fhc/report" target="_blank" rel="noopener">
+              <span>Open report example</span><span>↗</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="contact-band">
+      <div class="contact-grid">
+        <div>
+          <h2>One product can become a full content ecosystem.</h2>
+          <p>
+            Elettro is built for exactly this. Product pages. Blog content. Infographics. Social assets. Audio. Hosted video. SEO reports. AI-readiness analysis. Voice-agent concepts. This is how one product becomes a broader sales and marketing engine.
+          </p>
+        </div>
+        <div class="contact-box">
+          <div class="line"><strong>Dean Palermo</strong></div>
+          <div class="line">Marketing Producer</div>
+          <div class="line">(310) 408-6687</div>
+          <div class="line">dpalermo@elettro.com</div>
+          <div class="line">Elettro.com</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      Dean Palermo | Marketing Producer | (310) 408-6687 | dpalermo@elettro.com | Elettro – Innovative Digital Development | Elettro.com
+    </div>
+
+  </div>
+</body>
+</html>
