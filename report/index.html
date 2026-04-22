@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FHC SEO & AI Schema Score Report</title>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --panel:#ffffff;
+      --text:#13212f;
+      --muted:#5d6d7d;
+      --line:#dbe4ed;
+      --blue:#0c5ea8;
+      --blue-dark:#0a3e6b;
+      --blue-soft:#eaf4ff;
+      --green:#1f7a4d;
+      --yellow:#c48a18;
+      --red:#c34949;
+      --shadow:0 20px 55px rgba(12,31,56,.10);
+      --radius:24px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, #eef7ff 0%, transparent 30%),
+        linear-gradient(180deg, #f9fbfe 0%, var(--bg) 100%);
+      color:var(--text);
+      line-height:1.55;
+    }
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:28px 18px 54px;
+    }
+
+    .hero{
+      background:linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
+      color:#fff;
+      border-radius:30px;
+      padding:38px 34px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero:before,
+    .hero:after{
+      content:"";
+      position:absolute;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+    }
+
+    .hero:before{
+      width:320px;
+      height:320px;
+      right:-100px;
+      top:-110px;
+    }
+
+    .hero:after{
+      width:180px;
+      height:180px;
+      right:140px;
+      bottom:-70px;
+    }
+
+    .hero-grid{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:24px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.10);
+      font-size:12px;
+      letter-spacing:1.2px;
+      text-transform:uppercase;
+      font-weight:700;
+      margin-bottom:14px;
+    }
+
+    h1{
+      margin:0 0 12px;
+      font-size:42px;
+      line-height:1.05;
+    }
+
+    .hero p{
+      margin:0;
+      font-size:18px;
+      color:rgba(255,255,255,.9);
+      max-width:760px;
+    }
+
+    .scorebox{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:24px;
+      padding:24px;
+    }
+
+    .scorebox h2{
+      margin:0 0 14px;
+      font-size:15px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.86);
+    }
+
+    .score-main{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .mini-score{
+      background:rgba(255,255,255,.12);
+      border-radius:18px;
+      padding:16px;
+    }
+
+    .mini-score .label{
+      font-size:11px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.72);
+      font-weight:700;
+      margin-bottom:6px;
+    }
+
+    .mini-score .value{
+      font-size:34px;
+      line-height:1;
+      font-weight:800;
+      color:#fff;
+    }
+
+    .section{
+      margin-top:24px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:28px;
+    }
+
+    .section h2{
+      margin:0 0 16px;
+      font-size:30px;
+      line-height:1.1;
+      color:var(--blue-dark);
+    }
+
+    .section h3{
+      margin:0 0 12px;
+      font-size:22px;
+      line-height:1.2;
+      color:var(--blue-dark);
+    }
+
+    .section p{
+      margin:0 0 14px;
+      color:#35485a;
+      font-size:16px;
+    }
+
+    .section p:last-child{
+      margin-bottom:0;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+    }
+
+    .score-card{
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:24px;
+      background:#fff;
+    }
+
+    .score-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      border-radius:999px;
+      padding:10px 14px;
+      font-size:13px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.8px;
+      margin-bottom:14px;
+    }
+
+    .good{ background:#ebf8ef; color:var(--green); border:1px solid #cfead8; }
+    .mid{ background:#fff7e8; color:var(--yellow); border:1px solid #f2dfb0; }
+    .bad{ background:#fdeeee; color:var(--red); border:1px solid #f1c5c5; }
+
+    .big-score{
+      font-size:54px;
+      line-height:1;
+      font-weight:800;
+      color:var(--blue-dark);
+      margin-bottom:8px;
+    }
+
+    .subtle{
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .list{
+      display:grid;
+      gap:12px;
+      margin-top:14px;
+    }
+
+    .item{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:12px 0;
+      border-bottom:1px solid #edf2f7;
+    }
+
+    .item:last-child{
+      border-bottom:none;
+      padding-bottom:0;
+    }
+
+    .icon{
+      width:40px;
+      height:40px;
+      flex:0 0 40px;
+      border-radius:12px;
+      background:var(--blue-soft);
+      border:1px solid #d6e7f8;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      color:var(--blue-dark);
+      font-size:16px;
+    }
+
+    .item strong{
+      display:block;
+      margin-bottom:3px;
+      font-size:15px;
+      color:var(--text);
+    }
+
+    .item span{
+      display:block;
+      font-size:14px;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    .bars{
+      display:grid;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .bar-wrap{
+      display:grid;
+      gap:6px;
+    }
+
+    .bar-top{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      font-size:14px;
+      font-weight:700;
+      color:#274055;
+    }
+
+    .bar{
+      width:100%;
+      height:12px;
+      border-radius:999px;
+      background:#e9eef4;
+      overflow:hidden;
+    }
+
+    .fill{
+      height:100%;
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--blue) 0%, #6cb2ff 100%);
+    }
+
+    .callout{
+      margin-top:18px;
+      padding:18px 20px;
+      border-left:5px solid #c08a22;
+      background:#fbf7ee;
+      border-radius:0 16px 16px 0;
+      color:#503d1f;
+      font-weight:700;
+    }
+
+    .priority{
+      background:linear-gradient(135deg, #eff7ff 0%, #e2eefb 100%);
+      border:1px solid #cfdeef;
+      border-radius:22px;
+      padding:22px;
+    }
+
+    .priority ol{
+      margin:0;
+      padding-left:22px;
+    }
+
+    .priority li{
+      margin:0 0 12px;
+      color:#32475b;
+      font-size:15px;
+      line-height:1.5;
+      font-weight:700;
+    }
+
+    .footer-note{
+      margin-top:22px;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .grid-2,
+      .grid-3{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .hero{
+        padding:28px 20px;
+      }
+
+      h1{
+        font-size:31px;
+      }
+
+      .section{
+        padding:22px;
+      }
+
+      .score-main{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">SEO & AI Schema Audit Report</div>
+          <h1>FHC-USA.com Score Report</h1>
+          <p>
+            Full website review focused on SEO strength, AI-readability, structured data readiness, technical discoverability, content architecture, and search presentation quality.
+          </p>
+        </div>
+
+        <div class="scorebox">
+          <h2>Top Scores</h2>
+          <div class="score-main">
+            <div class="mini-score">
+              <div class="label">SEO Score</div>
+              <div class="value">6.8 / 10</div>
+            </div>
+            <div class="mini-score">
+              <div class="label">AI Schema Score</div>
+              <div class="value">3.9 / 10</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Executive Summary</h2>
+      <p>
+        FHC has a strong real business footprint online. The site shows broad product depth, a large catalog structure, quote-request pathways, downloadable resource depth, and a specialized configurator experience. That gives the website solid commercial substance.
+      </p>
+      <p>
+        The biggest weakness is not product inventory or authority. It is machine-readable clarity. The site appears much stronger for humans who already know the brand than it does for search engines, AI systems, and search-result optimization. The technical SEO and schema layer looks underdeveloped compared with the size of the catalog.
+      </p>
+      <div class="callout">
+        Bottom line: strong business substance, mid-level SEO execution, weak visible schema implementation.
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid-2">
+        <div class="score-card">
+          <div class="score-pill good">SEO Score</div>
+          <div class="big-score">6.8</div>
+          <p class="subtle">
+            Above average foundation. Strong commercial structure. Held back by weak metadata differentiation, likely thin search-snippet optimization, and weak visible structured data.
+          </p>
+        </div>
+
+        <div class="score-card">
+          <div class="score-pill bad">AI Schema Score</div>
+          <div class="big-score">3.9</div>
+          <p class="subtle">
+            The site has real content and real authority signals, but it appears to be missing a clear machine-readable layer on the pages reviewed. That limits how easily AI systems can extract clean business, product, and page meaning.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Category Score Breakdown</h2>
+      <div class="bars">
+        <div class="bar-wrap">
+          <div class="bar-top"><span>Content Depth</span><span>8.8 / 10</span></div>
+          <div class="bar"><div class="fill" style="width:88%"></div></div>
+        </div>
+
+        <div class="bar-wrap">
+          <div class="bar-top"><span>Site Architecture</span><span>8.1 / 10</span></div>
+          <div class="bar"><div class="fill" style="width:81%"></div></div>
+        </div>
+
+        <div class="bar-wrap">
+          <div class="bar-top"><span>Conversion Utility</span><span>7.8 / 10</span></div>
+          <div class="bar"><div class="fill" style="width:78%"></div></div>
+        </div>
+
+        <div class="bar-wrap">
+          <div class="bar-top"><span>Metadata Quality</span><span>4.9 / 10</span></div>
+          <div class="bar"><div class="fill" style="width:49%"></div></div>
+        </div>
+
+        <div class="bar-wrap">
+          <div class="bar-top"><span>Structured Data / Schema</span><span>3.2 / 10</span></div>
+          <div class="bar"><div class="fill" style="width:32%"></div></div>
+        </div>
+
+        <div class="bar-wrap">
+          <div class="bar-top"><span>AI Readability / Entity Clarity</span><span>5.1 / 10</span></div>
+          <div class="bar"><div class="fill" style="width:51%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid-2">
+        <div>
+          <h3>Strengths</h3>
+          <div class="list">
+            <div class="item">
+              <div class="icon">1</div>
+              <div>
+                <strong>Large product and category footprint</strong>
+                <span>The site covers shower hardware, architectural hardware, railing systems, storefronts, glazing supplies, tools, and more. That creates real topical relevance and strong long-tail search potential.</span>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="icon">2</div>
+              <div>
+                <strong>Strong commercial utility</strong>
+                <span>Request a quote, account registration, catalogs, business resources, and a configurator are all strong utility layers that support buyers beyond simple browsing.</span>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="icon">3</div>
+              <div>
+                <strong>Real authority signals</strong>
+                <span>The site clearly presents address, phone, business hours, product documents, webinars, catalogs, and company details. That helps trust and credibility.</span>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="icon">4</div>
+              <div>
+                <strong>Good technical-resource depth</strong>
+                <span>The catalog library and InstaQuote tool are valuable support assets that can strengthen both buyer confidence and topical authority.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3>Weaknesses</h3>
+          <div class="list">
+            <div class="item">
+              <div class="icon">1</div>
+              <div>
+                <strong>Weak visible structured data layer</strong>
+                <span>On the reviewed homepage HTML, common schema signals were not visible. That is a major missed opportunity for products, organization, website, breadcrumbs, and FAQs.</span>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="icon">2</div>
+              <div>
+                <strong>Metadata likely under-optimized</strong>
+                <span>Search-result snippets appear repetitive across pages, which suggests many pages rely on generic company description language instead of tightly differentiated meta descriptions.</span>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="icon">3</div>
+              <div>
+                <strong>AI extraction clarity is mid-level</strong>
+                <span>The site has plenty of content, but much of the meaning is embedded in navigation and catalog structure rather than in clean entity-first page framing for AI systems.</span>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="icon">4</div>
+              <div>
+                <strong>Homepage is broad, not sharply targeted</strong>
+                <span>The homepage does a lot, but it does not appear aggressively organized around high-intent search themes, featured entities, or schema-supported summary blocks.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Detailed Score Notes</h2>
+      <div class="grid-3">
+        <div class="score-card">
+          <div class="score-pill good">Strong</div>
+          <h3>Content Depth</h3>
+          <p>
+            This is a genuine inventory-rich B2B site. The amount of category coverage and supporting resources gives it strong topical breadth and strong long-tail opportunity.
+          </p>
+        </div>
+
+        <div class="score-card">
+          <div class="score-pill mid">Mixed</div>
+          <h3>Search Snippet Quality</h3>
+          <p>
+            Titles exist and are usable, but the repeated snippet language showing up in search results points to limited page-by-page differentiation. That suppresses click-through potential.
+          </p>
+        </div>
+
+        <div class="score-card">
+          <div class="score-pill bad">Weak</div>
+          <h3>Schema Layer</h3>
+          <p>
+            I would expect strong Organization, WebSite, Product, BreadcrumbList, FAQPage, and possibly Article or VideoObject schema here. The visible homepage review did not show that layer clearly.
+          </p>
+        </div>
+
+        <div class="score-card">
+          <div class="score-pill good">Strong</div>
+          <h3>Commercial Intent Match</h3>
+          <p>
+            The site does a solid job supporting serious buyers through quotes, catalogs, product resources, and configurator tools. That is a strong conversion foundation.
+          </p>
+        </div>
+
+        <div class="score-card">
+          <div class="score-pill mid">Mixed</div>
+          <h3>AI Optimization</h3>
+          <p>
+            AI systems can still infer what the company does from the content, but the site would perform better with cleaner entity summaries, stronger page intros, schema, and better page intent labeling.
+          </p>
+        </div>
+
+        <div class="score-card">
+          <div class="score-pill mid">Opportunity</div>
+          <h3>Homepage SEO Focus</h3>
+          <p>
+            The homepage is rich, but it could be more search-strategic by tightening topical blocks, improving semantic hierarchy, and emphasizing the highest-value product families with clearer summaries.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Priority Fixes</h2>
+      <div class="priority">
+        <ol>
+          <li>Add Organization, WebSite, SearchAction, BreadcrumbList, Product, and FAQ schema across key templates.</li>
+          <li>Rewrite title tags and meta descriptions for top category and product pages so they stop sounding repetitive in search results.</li>
+          <li>Create stronger category intro blocks with cleaner keyword/entity framing at the top of major pages.</li>
+          <li>Implement FAQ sections on high-value category pages and mark them up properly.</li>
+          <li>Add more AI-readable summaries for major product families, use cases, buyer types, and compatibility topics.</li>
+          <li>Strengthen internal linking between product families, resources, docs, configurator pages, and category hubs.</li>
+          <li>Build a clearer machine-readable trust layer: company profile, service areas, contact points, return/warranty/support policies, and brand relationships.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Final Verdict</h2>
+      <p>
+        FHC-USA.com is a real business website with real inventory depth, real product authority, and real buyer utility. That is a better starting point than a polished but empty site.
+      </p>
+      <p>
+        The gap is not substance. The gap is translation. The site needs a stronger technical SEO and schema layer so search engines and AI systems can interpret that business strength faster and more accurately.
+      </p>
+      <div class="callout">
+        Final scoring view: SEO = 6.8/10. AI Schema = 3.9/10. Strong foundation. Clear upside. Under-optimized machine-readable layer.
+      </div>
+    </section>
+
+    <div class="footer-note">
+      Prepared in score-report format for FHC-USA.com
+    </div>
+  </div>
+</body>
+</html>
